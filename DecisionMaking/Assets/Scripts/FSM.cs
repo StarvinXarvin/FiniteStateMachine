@@ -7,7 +7,7 @@ public class FSM : MonoBehaviour
     public GameObject treasure;
     public float dist2Steal = 10f;
     Moves moves;
-    UnityEngine.AI.NavMeshAgent agent;
+    public UnityEngine.AI.NavMeshAgent agent;
 
     private WaitForSeconds wait = new WaitForSeconds(0.05f); // == 1/20
     delegate IEnumerator State();

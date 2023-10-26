@@ -12,9 +12,9 @@ public class Moves : MonoBehaviour
     private bool isRotatingLeft = false;
     private bool isRotatingRight = false;
     private bool isWalking = false;
-    UnityEngine.AI.NavMeshAgent agent;
+    public NavMeshAgent agent;
 
-    public IEnumerator Wander()
+    public void Wander()
     {
         // Update is called once per frame
         if (isWandering == false)
@@ -23,15 +23,15 @@ public class Moves : MonoBehaviour
         }
         if (isRotatingRight == true)
         {
-            yield return transform.Rotate(transform.up * Time.deltaTime * rotSpeed);
+            transform.Rotate(transform.up * Time.deltaTime * rotSpeed);
         }
         if (isRotatingLeft == true)
         {
-            yield return transform.Rotate(transform.up * Time.deltaTime * -rotSpeed);
+            transform.Rotate(transform.up * Time.deltaTime * -rotSpeed);
         }
         if (isWalking == true)
         {
-            yield return transform.position += transform.forward * moveSpeed * Time.deltaTime;
+            transform.position += transform.forward * moveSpeed * Time.deltaTime;
         }
 
     }
@@ -66,13 +66,14 @@ public class Moves : MonoBehaviour
         isWandering = false;
     }
 
-    public IEnumerator Seek(Vector3 position)
+    public void Seek(Vector3 position)
     {
-        yield return agent.destination = position;
+        agent.destination = position;
     }
 
-    public IEnumerator Hide()
+    public void Hide()
     {
+        agent.areaMask = 3;
 
     }
 
