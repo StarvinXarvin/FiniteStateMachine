@@ -13,6 +13,8 @@ public class Moves : MonoBehaviour
     private bool isRotatingRight = false;
     private bool isWalking = false;
     public NavMeshAgent agent;
+    public GameObject HidingPlace;
+    private bool hidden = false;
 
     public void Wander()
     {
@@ -71,10 +73,30 @@ public class Moves : MonoBehaviour
         agent.destination = position;
     }
 
-    public void Hide()
+    public void Hide(Transform seeker)
     {
-        agent.areaMask = 3;
+        if (!hidden)
+        {
+            agent.destination = HidingPlace.transform.position;
+            if (Vector3.Distance(agent.transform.position, HidingPlace.transform.position) > 2f)
+            {
+                hidden = true;
+            }
+        }
+        else
+        {
+            agent.areaMask = 3;
+            agent.destination = GetAwayFrom(seeker.position, HidingPlace.transform.position, 3f);
+        }
 
+
+    }
+
+    private Vector3 GetAwayFrom(Vector3 target, Vector3 hidingspot, float radius)
+    {
+        Vector3 hidingDir = hidingspot - target;
+        Vector3 hidingPoint = hidingspot + (hidingDir.normalized) * radius;
+        return hidingDir;
     }
 
 }

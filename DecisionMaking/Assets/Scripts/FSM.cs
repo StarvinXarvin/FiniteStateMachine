@@ -1,5 +1,7 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AI;
 
 public class FSM : MonoBehaviour
 {
@@ -77,7 +79,7 @@ public class FSM : MonoBehaviour
 
         while (true)
         {
-            moves.Hide();
+            moves.Hide(cop);
             yield return wait;
         };
     }

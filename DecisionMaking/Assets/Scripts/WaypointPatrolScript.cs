@@ -8,12 +8,13 @@ public class WaypointPatrolScript : MonoBehaviour
     public GameObject[] waypoints;
     public int patrolWP = 0;
     public NavMeshAgent agent;
-    public NavMeshAgent chaser;
+    public float speed;
+    //public NavMeshAgent chaser;
 
 
     void Start()
     {
-        
+        agent.speed = speed;
         GotoNextPoint();
     }
 
@@ -41,10 +42,10 @@ public class WaypointPatrolScript : MonoBehaviour
             GotoNextPoint();
         }
 
-        if ((Vector3.Distance(transform.position, chaser.transform.position)) >= 5.0f)
-            GetComponent<NavMeshAgent>().speed = 0.0f;
-        else
-            GetComponent<NavMeshAgent>().speed = 4.5f;
+        //if ((Vector3.Distance(transform.position, chaser.transform.position)) >= 5.0f)
+        //    GetComponent<NavMeshAgent>().speed = 0.0f;
+        //else
+        //    GetComponent<NavMeshAgent>().speed = 4.5f;
 
     }
 
