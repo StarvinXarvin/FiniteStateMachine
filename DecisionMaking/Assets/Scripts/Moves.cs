@@ -78,7 +78,7 @@ public class Moves : MonoBehaviour
         if (!hidden)
         {
             agent.destination = HidingPlace.transform.position;
-            if (Vector3.Distance(agent.transform.position, HidingPlace.transform.position) > 2f)
+            if (Vector3.Distance(agent.transform.position, HidingPlace.transform.position) > 2.5f)
             {
                 Debug.Log("Searching Hiding Spot");                
             }
@@ -90,8 +90,8 @@ public class Moves : MonoBehaviour
         else
         {
             Debug.Log("Avoiding Cop");
-            agent.areaMask = 3;
-            agent.destination = GetAwayFrom(seeker.position, HidingPlace.transform.position, 3f);
+            agent.areaMask = NavMesh.GetAreaFromName("HidingSpot");
+            agent.destination = GetAwayFrom(seeker.position, HidingPlace.transform.position, 2f);
         }
 
 
@@ -101,7 +101,7 @@ public class Moves : MonoBehaviour
     {
         Vector3 hidingDir = hidingspot - target;
         Vector3 hidingPoint = hidingspot + (hidingDir.normalized) * radius;
-        return hidingDir;
+        return hidingPoint;
     }
 
 }

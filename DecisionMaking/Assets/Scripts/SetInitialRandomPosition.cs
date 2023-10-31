@@ -12,8 +12,8 @@ public class SetInitialRandomPosition : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        RandX = Random.Range(-24.0f, 27.0f);
-        RandZ = Random.Range(-23.0f, 28.0f);
+        RandX = Random.Range(-12.0f, 12.0f);
+        RandZ = Random.Range(-12.0f, 12.0f);
         RandYAngle = Random.Range(0.0f, 360.0f);
 
         transform.position = new Vector3(RandX, 1.233784f, RandZ);
