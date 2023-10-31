@@ -41,9 +41,9 @@ public class Moves : MonoBehaviour
     public IEnumerator Wandering()
     {
         int rotTime = Random.Range(1, 3);
-        int rotateWait = Random.Range(1, 4);
+        int rotateWait = Random.Range(1, 3);
         int rotateLorR = Random.Range(1, 2);
-        int walkWait = Random.Range(1, 5);
+        int walkWait = Random.Range(1, 3);
         int walkTime = Random.Range(1, 6);
 
         isWandering = true;
@@ -80,11 +80,16 @@ public class Moves : MonoBehaviour
             agent.destination = HidingPlace.transform.position;
             if (Vector3.Distance(agent.transform.position, HidingPlace.transform.position) > 2f)
             {
+                Debug.Log("Searching Hiding Spot");                
+            }
+            else
+            {
                 hidden = true;
             }
         }
         else
         {
+            Debug.Log("Avoiding Cop");
             agent.areaMask = 3;
             agent.destination = GetAwayFrom(seeker.position, HidingPlace.transform.position, 3f);
         }
